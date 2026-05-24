@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+}
+
+canvas {
+    display: block;
+}
+
+#narrative-layer {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #00ff00; 
+    z-index: 100;
+    pointer-events: none;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.system-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.stats-box {
+    border-left: 2px solid #00ff00;
+    padding-left: 15px;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+#alert-msg {
+    margin-top: 20px;
+    color: #ff0050; 
+    text-shadow: 0 0 5px #ff0050;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+#serial-gui {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 110;
+}
+
+#connect-btn {
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#connect-btn:hover {
+    background: #00ff00;
+    color: black;
+}

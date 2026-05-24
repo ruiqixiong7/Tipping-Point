@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Pressure Simulator - V2.0</title>
+    
+    <!-- 加载 p5.js 核心 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <!-- 加载 WebSerial 串口库 -->
+    <script src="https://unpkg.com/@gohai/p5.webserial@latest/libraries/p5.webserial.js"></script>
+    
+    <style>
+        /* 基础样式：黑场、禁止溢出、等宽字体 */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+            background-color: #000; 
+            font-family: 'Courier New', Courier, monospace; 
+            user-select: none;
+        }
+
+        /* 左上角叙事 UI 层 */
+        #narrative-layer {
+            position: absolute; 
+            top: 30px; 
+            left: 30px;
+            color: #00ff00; 
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+            pointer-events: none; 
+            z-index: 10;
+            max-width: 400px;
+        }
+
+        .system-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .stats-box { 
+            border-left: 3px solid #00ff00; 
+            padding-left: 15px; 
+            background: rgba(0, 20, 0, 0.4); 
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .stats-box p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        #alert-msg {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* 右下角串口连接按钮 */
+        #serial-gui { 
+            position: absolute; 
+            bottom: 30px; 
+            right: 30px; 
+            z-index: 20; 
+        }
+
+        #connect-btn {
+            background: transparent; 
+            color: #00ff00; 
+            border: 1px solid #00ff00;
+            padding: 12px 24px; 
+            cursor: pointer; 
+            font-family: inherit;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #connect-btn:hover { 
+            background: rgba(0, 255, 0, 0.2); 
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        #connect-btn:active {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* 隐藏 canvas 默认边框 */
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- 叙事 UI 层：显示系统状态和测试数据 -->
+    <div id="narrative-layer">
+        <div class="system-header">
+            STATUS: <span id="status-text">WAITING_FOR_INPUT...</span>
+        </div>
+        
+        <div class="stats-box">
+            <p>> Conformity : <span id="conformity-rate">0%</span></p>
+            <p>> Individuality : <span id="individuality-rate">100%</span></p>
+        </div>
+
+        <div id="alert-msg">
+            Continuous Rotation: Reverting to Collective Sequence...
+        </div>
+    </div>
+
+    <!-- 交互层：连接物理硬件 -->
+    <div id="serial-gui">
+        <button id="connect-btn">Connect the Rotator</button>
+    </div>
+
+    <!-- 引入你的 sketch.js -->
+    <script src="sketch.js"></script>
+
+</body>
+</html>
